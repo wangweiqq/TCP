@@ -84,5 +84,11 @@ void MyTcpServer::clear(){
 }
 void MyTcpServer::readDataSlot(const int id, const QString & ip, const quint16 port,const QByteArray & data)//发送获得用户发过来的数据
 {
-    qDebug()<<"id:"<<id<<",ip:"<<ip<<",port:"<<port<<",data:"<<data;
+	QString str4 = QString::fromUtf8(data);
+	QString str3 = QString::fromLocal8Bit(data);
+	std::string str2 = data.toStdString();
+    qDebug()<<"id:"<<id<<",ip:"<<ip<<",port:"<<port<<",data:"<< str4;
+	QTcpSocket* socket = tcpClient[id];
+	QString str = "你好，Hello World";
+	socket->write(str.toLocal8Bit());
 }
